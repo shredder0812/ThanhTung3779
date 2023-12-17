@@ -1,34 +1,44 @@
-Copying tests/userprog/bad-read into /tmp/I9MduaFM3j.dsk...
-Writing command line to /tmp/AhUyCOT9EL.dsk...
-qemu -hda /tmp/AhUyCOT9EL.dsk -hdb /tmp/Kuf7ir5whv.dsk -hdc /tmp/I9MduaFM3j.dsk -m 4 -net none -nographic -monitor null
-Kernel command line: -q -f put bad-read run bad-read
-Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
-374 pages available in user pool.
-Calibrating timer...  209,510,400 loops/s.
-hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
-hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
-hd1:0: detected 97 sector (48 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Copying tests/userprog/bad-read to scratch partition...
+qemu-system-i386 -device isa-debug-exit -hda /tmp/g6nWLu2sTK.dsk -m 4 -net none -nographic -monitor null
+c[?7l[2J[0mSeaBIOS (version 1.15.0-1)
+Booting from Hard Disk...
+PPiiLLoo  hhddaa1
+1
+LLooaaddiinngg.......................
+Kernel command line: -q -f extract run bad-read
+Pintos booting with 3,968 kB RAM...
+367 pages available in kernel pool.
+367 pages available in user pool.
+Calibrating timer...  197,017,600 loops/s.
+ide0: unexpected interrupt
+hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
+hda1: 207 sectors (103 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 126 sectors (63 kB), Pintos scratch (22)
+ide1: unexpected interrupt
+filesys: using hda2
+scratch: using hda3
 Formatting file system...done.
 Boot complete.
+Extracting ustar archive from scratch device into file system...
 Putting 'bad-read' into the file system...
+Erasing ustar archive...
 Executing 'bad-read':
 (bad-read) begin
 Page fault at 0: not present error reading page in user context.
 bad-read: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80480a6
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80480f3
  cr2=00000000 error=00000004
- eax=00000100 ebx=00000000 ecx=0804bfee edx=00000027
- esi=00000000 edi=00000000 esp=bfffff80 ebp=bfffff98
+ eax=00000100 ebx=0804c6f8 ecx=000000ad edx=00000027
+ esi=00000000 edi=00000000 esp=bfffff80 ebp=bfffffbc
  cs=001b ds=0023 es=0023 ss=0023
 bad-read: exit(-1)
 Execution of 'bad-read' complete.
-Timer: 84 ticks
-Thread: 30 idle ticks, 52 kernel ticks, 2 user ticks
-hd0:0: 0 reads, 0 writes
-hd0:1: 59 reads, 202 writes
-hd1:0: 97 reads, 0 writes
-Console: 1132 characters output
+Timer: 72 ticks
+Thread: 37 idle ticks, 32 kernel ticks, 3 user ticks
+hda2 (filesys): 70 reads, 256 writes
+hda3 (scratch): 125 reads, 2 writes
+Console: 1278 characters output
 Keyboard: 0 keys pressed
 Exception: 1 page faults
 Powering off...

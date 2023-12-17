@@ -1,28 +1,38 @@
-Copying tests/userprog/open-missing into /tmp/7a0NsIm3c7.dsk...
-Writing command line to /tmp/oNwsW7ljHk.dsk...
-qemu -hda /tmp/oNwsW7ljHk.dsk -hdb /tmp/kKDt2CprNc.dsk -hdc /tmp/7a0NsIm3c7.dsk -m 4 -net none -nographic -monitor null
-Kernel command line: -q -f put open-missing run open-missing
-Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
-374 pages available in user pool.
-Calibrating timer...  209,510,400 loops/s.
-hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
-hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
-hd1:0: detected 97 sector (48 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Copying tests/userprog/open-missing to scratch partition...
+qemu-system-i386 -device isa-debug-exit -hda /tmp/Sb_jGUT2fY.dsk -m 4 -net none -nographic -monitor null
+c[?7l[2J[0mSeaBIOS (version 1.15.0-1)
+Booting from Hard Disk...
+PPiiLLoo  hhddaa1
+1
+LLooaaddiinngg.......................
+Kernel command line: -q -f extract run open-missing
+Pintos booting with 3,968 kB RAM...
+367 pages available in kernel pool.
+367 pages available in user pool.
+Calibrating timer...  199,884,800 loops/s.
+ide0: unexpected interrupt
+hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
+hda1: 207 sectors (103 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 126 sectors (63 kB), Pintos scratch (22)
+ide1: unexpected interrupt
+filesys: using hda2
+scratch: using hda3
 Formatting file system...done.
 Boot complete.
+Extracting ustar archive from scratch device into file system...
 Putting 'open-missing' into the file system...
+Erasing ustar archive...
 Executing 'open-missing':
 (open-missing) begin
 (open-missing) end
 open-missing: exit(0)
 Execution of 'open-missing' complete.
-Timer: 79 ticks
-Thread: 30 idle ticks, 48 kernel ticks, 1 user ticks
-hd0:0: 0 reads, 0 writes
-hd0:1: 76 reads, 202 writes
-hd1:0: 97 reads, 0 writes
-Console: 820 characters output
+Timer: 70 ticks
+Thread: 36 idle ticks, 34 kernel ticks, 0 user ticks
+hda2 (filesys): 87 reads, 256 writes
+hda3 (scratch): 125 reads, 2 writes
+Console: 962 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

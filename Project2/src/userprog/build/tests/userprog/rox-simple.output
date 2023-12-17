@@ -1,17 +1,28 @@
-Copying tests/userprog/rox-simple into /tmp/gPYOV3BIw5.dsk...
-Writing command line to /tmp/eUlVQoDHbs.dsk...
-qemu -hda /tmp/eUlVQoDHbs.dsk -hdb /tmp/q2j6oRpsz_.dsk -hdc /tmp/gPYOV3BIw5.dsk -m 4 -net none -nographic -monitor null
-Kernel command line: -q -f put rox-simple run rox-simple
-Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
-374 pages available in user pool.
-Calibrating timer...  209,510,400 loops/s.
-hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
-hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
-hd1:0: detected 98 sector (49 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Copying tests/userprog/rox-simple to scratch partition...
+qemu-system-i386 -device isa-debug-exit -hda /tmp/TMob5bA4nS.dsk -m 4 -net none -nographic -monitor null
+c[?7l[2J[0mSeaBIOS (version 1.15.0-1)
+Booting from Hard Disk...
+PPiiLLoo  hhddaa1
+1
+LLooaaddiinngg.......................
+Kernel command line: -q -f extract run rox-simple
+Pintos booting with 3,968 kB RAM...
+367 pages available in kernel pool.
+367 pages available in user pool.
+Calibrating timer...  196,403,200 loops/s.
+ide0: unexpected interrupt
+hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
+hda1: 207 sectors (103 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 127 sectors (63 kB), Pintos scratch (22)
+ide1: unexpected interrupt
+filesys: using hda2
+scratch: using hda3
 Formatting file system...done.
 Boot complete.
+Extracting ustar archive from scratch device into file system...
 Putting 'rox-simple' into the file system...
+Erasing ustar archive...
 Executing 'rox-simple':
 (rox-simple) begin
 (rox-simple) open "rox-simple"
@@ -20,12 +31,11 @@ Executing 'rox-simple':
 (rox-simple) end
 rox-simple: exit(0)
 Execution of 'rox-simple' complete.
-Timer: 85 ticks
-Thread: 30 idle ticks, 54 kernel ticks, 1 user ticks
-hd0:0: 0 reads, 0 writes
-hd0:1: 64 reads, 204 writes
-hd1:0: 98 reads, 0 writes
-Console: 905 characters output
+Timer: 67 ticks
+Thread: 35 idle ticks, 31 kernel ticks, 1 user ticks
+hda2 (filesys): 73 reads, 258 writes
+hda3 (scratch): 126 reads, 2 writes
+Console: 1049 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

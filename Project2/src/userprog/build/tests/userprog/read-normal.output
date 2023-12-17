@@ -1,19 +1,30 @@
-Copying tests/userprog/read-normal into /tmp/BVM8vlb9qv.dsk...
-Copying ../../tests/userprog/sample.txt into /tmp/BVM8vlb9qv.dsk...
-Writing command line to /tmp/FBFALMSagl.dsk...
-qemu -hda /tmp/FBFALMSagl.dsk -hdb /tmp/XlREMPQ8xq.dsk -hdc /tmp/BVM8vlb9qv.dsk -m 4 -net none -nographic -monitor null
-Kernel command line: -q -f put read-normal put sample.txt run read-normal
-Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
-374 pages available in user pool.
-Calibrating timer...  209,510,400 loops/s.
-hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
-hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
-hd1:0: detected 100 sector (50 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Copying tests/userprog/read-normal to scratch partition...
+Copying ../../tests/userprog/sample.txt to scratch partition...
+qemu-system-i386 -device isa-debug-exit -hda /tmp/7LR38xqghF.dsk -m 4 -net none -nographic -monitor null
+c[?7l[2J[0mSeaBIOS (version 1.15.0-1)
+Booting from Hard Disk...
+PPiiLLoo  hhddaa1
+1
+LLooaaddiinngg.......................
+Kernel command line: -q -f extract run read-normal
+Pintos booting with 3,968 kB RAM...
+367 pages available in kernel pool.
+367 pages available in user pool.
+Calibrating timer...  197,427,200 loops/s.
+ide0: unexpected interrupt
+hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
+hda1: 207 sectors (103 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 129 sectors (64 kB), Pintos scratch (22)
+ide1: unexpected interrupt
+filesys: using hda2
+scratch: using hda3
 Formatting file system...done.
 Boot complete.
+Extracting ustar archive from scratch device into file system...
 Putting 'read-normal' into the file system...
 Putting 'sample.txt' into the file system...
+Erasing ustar archive...
 Executing 'read-normal':
 (read-normal) begin
 (read-normal) open "sample.txt" for verification
@@ -22,12 +33,11 @@ Executing 'read-normal':
 (read-normal) end
 read-normal: exit(0)
 Execution of 'read-normal' complete.
-Timer: 86 ticks
-Thread: 30 idle ticks, 54 kernel ticks, 2 user ticks
-hd0:0: 0 reads, 0 writes
-hd0:1: 98 reads, 210 writes
-hd1:0: 100 reads, 0 writes
-Console: 1004 characters output
+Timer: 71 ticks
+Thread: 35 idle ticks, 33 kernel ticks, 3 user ticks
+hda2 (filesys): 101 reads, 264 writes
+hda3 (scratch): 128 reads, 2 writes
+Console: 1131 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

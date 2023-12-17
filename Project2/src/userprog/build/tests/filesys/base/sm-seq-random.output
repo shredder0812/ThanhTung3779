@@ -1,17 +1,28 @@
-Copying tests/filesys/base/sm-seq-random into /tmp/5rRjtbLGba.dsk...
-Writing command line to /tmp/AqUoWDB8Vg.dsk...
-qemu -hda /tmp/AqUoWDB8Vg.dsk -hdb /tmp/_bVGqUxCRO.dsk -hdc /tmp/5rRjtbLGba.dsk -m 4 -net none -nographic -monitor null
-Kernel command line: -q -f put sm-seq-random run sm-seq-random
-Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
-374 pages available in user pool.
-Calibrating timer...  104,755,200 loops/s.
-hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
-hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
-hd1:0: detected 101 sector (50 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Copying tests/filesys/base/sm-seq-random to scratch partition...
+qemu-system-i386 -device isa-debug-exit -hda /tmp/vqMCVol5Pq.dsk -m 4 -net none -nographic -monitor null
+c[?7l[2J[0mSeaBIOS (version 1.15.0-1)
+Booting from Hard Disk...
+PPiiLLoo  hhddaa1
+1
+LLooaaddiinngg.......................
+Kernel command line: -q -f extract run sm-seq-random
+Pintos booting with 3,968 kB RAM...
+367 pages available in kernel pool.
+367 pages available in user pool.
+Calibrating timer...  194,764,800 loops/s.
+ide0: unexpected interrupt
+hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
+hda1: 207 sectors (103 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 131 sectors (65 kB), Pintos scratch (22)
+ide1: unexpected interrupt
+filesys: using hda2
+scratch: using hda3
 Formatting file system...done.
 Boot complete.
+Extracting ustar archive from scratch device into file system...
 Putting 'sm-seq-random' into the file system...
+Erasing ustar archive...
 Executing 'sm-seq-random':
 (sm-seq-random) begin
 (sm-seq-random) create "nibble"
@@ -24,12 +35,11 @@ Executing 'sm-seq-random':
 (sm-seq-random) end
 sm-seq-random: exit(0)
 Execution of 'sm-seq-random' complete.
-Timer: 92 ticks
-Thread: 30 idle ticks, 54 kernel ticks, 8 user ticks
-hd0:0: 0 reads, 0 writes
-hd0:1: 117 reads, 246 writes
-hd1:0: 101 reads, 0 writes
-Console: 1081 characters output
+Timer: 72 ticks
+Thread: 36 idle ticks, 30 kernel ticks, 6 user ticks
+hda2 (filesys): 127 reads, 302 writes
+hda3 (scratch): 130 reads, 2 writes
+Console: 1220 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

@@ -1,33 +1,51 @@
-Copying tests/userprog/wait-killed into /tmp/FH8lBtr48m.dsk...
-Copying tests/userprog/child-bad into /tmp/FH8lBtr48m.dsk...
-Writing command line to /tmp/81tywxe8qo.dsk...
-qemu -hda /tmp/81tywxe8qo.dsk -hdb /tmp/gdPQkGfki4.dsk -hdc /tmp/FH8lBtr48m.dsk -m 4 -net none -nographic -monitor null
-Kernel command line: -q -f put wait-killed put child-bad run wait-killed
-Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
-374 pages available in user pool.
-Calibrating timer...  209,510,400 loops/s.
-hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
-hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
-hd1:0: detected 194 sector (97 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Copying tests/userprog/wait-killed to scratch partition...
+Copying tests/userprog/child-bad to scratch partition...
+qemu-system-i386 -device isa-debug-exit -hda /tmp/hJXerNNIjf.dsk -m 4 -net none -nographic -monitor null
+c[?7l[2J[0mSeaBIOS (version 1.15.0-1)
+Booting from Hard Disk...
+PPiiLLoo  hhddaa1
+1
+LLooaaddiinngg.......................
+Kernel command line: -q -f extract run wait-killed
+Pintos booting with 3,968 kB RAM...
+367 pages available in kernel pool.
+367 pages available in user pool.
+Calibrating timer...  196,812,800 loops/s.
+ide0: unexpected interrupt
+hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
+hda1: 207 sectors (103 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 250 sectors (125 kB), Pintos scratch (22)
+ide1: unexpected interrupt
+filesys: using hda2
+scratch: using hda3
 Formatting file system...done.
 Boot complete.
+Extracting ustar archive from scratch device into file system...
 Putting 'wait-killed' into the file system...
 Putting 'child-bad' into the file system...
+Erasing ustar archive...
 Executing 'wait-killed':
 (wait-killed) begin
-(child-bad) begin
-child-bad: exit(-1)
-(wait-killed) wait(exec()) = -1
-(wait-killed) end
-wait-killed: exit(0)
-Execution of 'wait-killed' complete.
-Timer: 116 ticks
-Thread: 30 idle ticks, 85 kernel ticks, 1 user ticks
-hd0:0: 0 reads, 0 writes
-hd0:1: 116 reads, 398 writes
-hd1:0: 194 reads, 0 writes
-Console: 944 characters output
+Page fault at 0x34: not present error reading page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0023357
+ cr2=00000034 error=00000000
+ eax=00000001 ebx=c0039200 ecx=c010b000 edx=c0103000
+ esi=00000034 edi=00000004 esp=c010c020 ebp=00000001
+ cs=0008 ds=0010 es=0010 ss=b000
+Kernel PANIC at ../../userprog/exception.c:97 in kill(): Kernel bug - unexpected interrupt in kernel
+Call stack: 0xc002a7a6 0Page fault at 0x6c6c696b: not present error reading page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0027e2e
+ cr2=6c6c696b error=00000000
+ eax=00000002 ebx=c0039200 ecx=00000798 edx=000003d4
+ esi=6c6c696b edi=c0033d5e esp=c0033d5e ebp=c010bda8
+ cs=0008 ds=0010 es=0010 ss=0000
+Kernel PANIC recursion at ../../userprog/exception.c:97 in kill().
+Timer: 81 ticks
+Thread: 36 idle ticks, 39 kernel ticks, 6 user ticks
+hda2 (filesys): 97 reads, 506 writes
+hda3 (scratch): 249 reads, 2 writes
+Console: 1718 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 2 page faults
 Powering off...

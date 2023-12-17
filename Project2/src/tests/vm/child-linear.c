@@ -7,30 +7,29 @@
 #include "tests/lib.h"
 #include "tests/main.h"
 
-const char *test_name = "child-linear";
-
 #define SIZE (1024 * 1024)
 static char buf[SIZE];
 
-int
-main (int argc, char *argv[])
+int main(int argc, char *argv[])
 {
-  const char *key = argv[argc - 1];
-  struct arc4 arc4;
-  size_t i;
+    const char *key = argv[argc - 1];
+    struct arc4 arc4;
+    size_t i;
 
-  /* Encrypt zeros. */
-  arc4_init (&arc4, key, strlen (key));
-  arc4_crypt (&arc4, buf, SIZE);
+    test_name = "child-linear";
 
-  /* Decrypt back to zeros. */
-  arc4_init (&arc4, key, strlen (key));
-  arc4_crypt (&arc4, buf, SIZE);
+    /* Encrypt zeros. */
+    arc4_init(&arc4, key, strlen(key));
+    arc4_crypt(&arc4, buf, SIZE);
 
-  /* Check that it's all zeros. */
-  for (i = 0; i < SIZE; i++)
-    if (buf[i] != '\0')
-      fail ("byte %zu != 0", i);
+    /* Decrypt back to zeros. */
+    arc4_init(&arc4, key, strlen(key));
+    arc4_crypt(&arc4, buf, SIZE);
 
-  return 0x42;
+    /* Check that it's all zeros. */
+    for (i = 0; i < SIZE; i++)
+        if (buf[i] != '\0')
+            fail("byte %zu != 0", i);
+
+    return 0x42;
 }

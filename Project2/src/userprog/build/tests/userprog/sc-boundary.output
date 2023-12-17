@@ -1,27 +1,37 @@
-Copying tests/userprog/sc-boundary into /tmp/Xz2UALrY3x.dsk...
-Writing command line to /tmp/Pa1o1BUooj.dsk...
-qemu -hda /tmp/Pa1o1BUooj.dsk -hdb /tmp/uO0h9M2PKU.dsk -hdc /tmp/Xz2UALrY3x.dsk -m 4 -net none -nographic -monitor null
-Kernel command line: -q -f put sc-boundary run sc-boundary
-Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
-374 pages available in user pool.
-Calibrating timer...  199,680,000 loops/s.
-hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
-hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
-hd1:0: detected 100 sector (50 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Copying tests/userprog/sc-boundary to scratch partition...
+qemu-system-i386 -device isa-debug-exit -hda /tmp/dSHIpKPdCN.dsk -m 4 -net none -nographic -monitor null
+c[?7l[2J[0mSeaBIOS (version 1.15.0-1)
+Booting from Hard Disk...
+PPiiLLoo  hhddaa1
+1
+LLooaaddiinngg.......................
+Kernel command line: -q -f extract run sc-boundary
+Pintos booting with 3,968 kB RAM...
+367 pages available in kernel pool.
+367 pages available in user pool.
+Calibrating timer...  197,427,200 loops/s.
+ide0: unexpected interrupt
+hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
+hda1: 207 sectors (103 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 130 sectors (65 kB), Pintos scratch (22)
+ide1: unexpected interrupt
+filesys: using hda2
+scratch: using hda3
 Formatting file system...done.
 Boot complete.
+Extracting ustar archive from scratch device into file system...
 Putting 'sc-boundary' into the file system...
+Erasing ustar archive...
 Executing 'sc-boundary':
 (sc-boundary) begin
 sc-boundary: exit(42)
 Execution of 'sc-boundary' complete.
-Timer: 87 ticks
-Thread: 30 idle ticks, 57 kernel ticks, 1 user ticks
-hd0:0: 0 reads, 0 writes
-hd0:1: 60 reads, 208 writes
-hd1:0: 100 reads, 0 writes
-Console: 797 characters output
+Timer: 69 ticks
+Thread: 36 idle ticks, 32 kernel ticks, 1 user ticks
+hda2 (filesys): 70 reads, 264 writes
+hda3 (scratch): 129 reads, 2 writes
+Console: 938 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

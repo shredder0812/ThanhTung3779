@@ -1,17 +1,28 @@
-Copying tests/filesys/base/lg-full into /tmp/dGsDZE2RX_.dsk...
-Writing command line to /tmp/oJgerQ3JGf.dsk...
-qemu -hda /tmp/oJgerQ3JGf.dsk -hdb /tmp/WXeOCBESH8.dsk -hdc /tmp/dGsDZE2RX_.dsk -m 4 -net none -nographic -monitor null
-Kernel command line: -q -f put lg-full run lg-full
-Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
-374 pages available in user pool.
-Calibrating timer...  209,510,400 loops/s.
-hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
-hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
-hd1:0: detected 101 sector (50 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Copying tests/filesys/base/lg-full to scratch partition...
+qemu-system-i386 -device isa-debug-exit -hda /tmp/lrhvoVUvfA.dsk -m 4 -net none -nographic -monitor null
+c[?7l[2J[0mSeaBIOS (version 1.15.0-1)
+Booting from Hard Disk...
+PPiiLLoo  hhddaa1
+1
+LLooaaddiinngg.......................
+Kernel command line: -q -f extract run lg-full
+Pintos booting with 3,968 kB RAM...
+367 pages available in kernel pool.
+367 pages available in user pool.
+Calibrating timer...  197,632,000 loops/s.
+ide0: unexpected interrupt
+hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
+hda1: 207 sectors (103 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 131 sectors (65 kB), Pintos scratch (22)
+ide1: unexpected interrupt
+filesys: using hda2
+scratch: using hda3
 Formatting file system...done.
 Boot complete.
+Extracting ustar archive from scratch device into file system...
 Putting 'lg-full' into the file system...
+Erasing ustar archive...
 Executing 'lg-full':
 (lg-full) begin
 (lg-full) create "quux"
@@ -24,12 +35,11 @@ Executing 'lg-full':
 (lg-full) end
 lg-full: exit(0)
 Execution of 'lg-full' complete.
-Timer: 132 ticks
-Thread: 30 idle ticks, 54 kernel ticks, 48 user ticks
-hd0:0: 0 reads, 0 writes
-hd0:1: 239 reads, 510 writes
-hd1:0: 101 reads, 0 writes
-Console: 979 characters output
+Timer: 82 ticks
+Thread: 35 idle ticks, 34 kernel ticks, 13 user ticks
+hda2 (filesys): 249 reads, 566 writes
+hda3 (scratch): 130 reads, 2 writes
+Console: 1123 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

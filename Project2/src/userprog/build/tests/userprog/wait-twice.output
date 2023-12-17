@@ -1,34 +1,51 @@
-Copying tests/userprog/wait-twice into /tmp/xNHAF5RyDa.dsk...
-Copying tests/userprog/child-simple into /tmp/xNHAF5RyDa.dsk...
-Writing command line to /tmp/eFx44B_PSo.dsk...
-qemu -hda /tmp/eFx44B_PSo.dsk -hdb /tmp/m6E7na9Ioa.dsk -hdc /tmp/xNHAF5RyDa.dsk -m 4 -net none -nographic -monitor null
-Kernel command line: -q -f put wait-twice put child-simple run wait-twice
-Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
-374 pages available in user pool.
-Calibrating timer...  209,510,400 loops/s.
-hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
-hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
-hd1:0: detected 193 sector (96 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Copying tests/userprog/wait-twice to scratch partition...
+Copying tests/userprog/child-simple to scratch partition...
+qemu-system-i386 -device isa-debug-exit -hda /tmp/IofwKABFJv.dsk -m 4 -net none -nographic -monitor null
+c[?7l[2J[0mSeaBIOS (version 1.15.0-1)
+Booting from Hard Disk...
+PPiiLLoo  hhddaa1
+1
+LLooaaddiinngg.......................
+Kernel command line: -q -f extract run wait-twice
+Pintos booting with 3,968 kB RAM...
+367 pages available in kernel pool.
+367 pages available in user pool.
+Calibrating timer...  197,222,400 loops/s.
+ide0: unexpected interrupt
+hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
+hda1: 207 sectors (103 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 248 sectors (124 kB), Pintos scratch (22)
+ide1: unexpected interrupt
+filesys: using hda2
+scratch: using hda3
 Formatting file system...done.
 Boot complete.
+Extracting ustar archive from scratch device into file system...
 Putting 'wait-twice' into the file system...
 Putting 'child-simple' into the file system...
+Erasing ustar archive...
 Executing 'wait-twice':
 (wait-twice) begin
-(child-simple) run
-child-simple: exit(81)
-(wait-twice) wait(exec()) = 81
-(wait-twice) wait(exec()) = -1
-(wait-twice) end
-wait-twice: exit(0)
-Execution of 'wait-twice' complete.
-Timer: 116 ticks
-Thread: 30 idle ticks, 84 kernel ticks, 2 user ticks
-hd0:0: 0 reads, 0 writes
-hd0:1: 122 reads, 396 writes
-hd1:0: 193 reads, 0 writes
-Console: 976 characters output
+Page fault at 0x34: not present error reading page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0023357
+ cr2=00000034 error=00000000
+ eax=00000001 ebx=c0039200 ecx=c010b000 edx=c0103000
+ esi=00000034 edi=00000004 esp=c010c020 ebp=00000001
+ cs=0008 ds=0010 es=0010 ss=b000
+Kernel PANIC at ../../userprog/exception.c:97 in kill(): Kernel bug - unexpected interrupt in kernel
+Call stack: 0xc002a7a6 0Page fault at 0x6c6c696b: not present error reading page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0027e2e
+ cr2=6c6c696b error=00000000
+ eax=00000002 ebx=c0039200 ecx=00000798 edx=000003d4
+ esi=6c6c696b edi=c0033d5e esp=c0033d5e ebp=c010bda8
+ cs=0008 ds=0010 es=0010 ss=0000
+Kernel PANIC recursion at ../../userprog/exception.c:97 in kill().
+Timer: 83 ticks
+Thread: 41 idle ticks, 37 kernel ticks, 5 user ticks
+hda2 (filesys): 97 reads, 502 writes
+hda3 (scratch): 247 reads, 2 writes
+Console: 1717 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 2 page faults
 Powering off...

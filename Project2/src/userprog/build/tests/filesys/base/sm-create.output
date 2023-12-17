@@ -1,17 +1,28 @@
-Copying tests/filesys/base/sm-create into /tmp/advVnVC3V2.dsk...
-Writing command line to /tmp/HUDYOnXv_r.dsk...
-qemu -hda /tmp/HUDYOnXv_r.dsk -hdb /tmp/wVG2mfE3uY.dsk -hdc /tmp/advVnVC3V2.dsk -m 4 -net none -nographic -monitor null
-Kernel command line: -q -f put sm-create run sm-create
-Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
-374 pages available in user pool.
-Calibrating timer...  157,081,600 loops/s.
-hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
-hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
-hd1:0: detected 100 sector (50 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Copying tests/filesys/base/sm-create to scratch partition...
+qemu-system-i386 -device isa-debug-exit -hda /tmp/DELE3ogU4F.dsk -m 4 -net none -nographic -monitor null
+c[?7l[2J[0mSeaBIOS (version 1.15.0-1)
+Booting from Hard Disk...
+PPiiLLoo  hhddaa1
+1
+LLooaaddiinngg.......................
+Kernel command line: -q -f extract run sm-create
+Pintos booting with 3,968 kB RAM...
+367 pages available in kernel pool.
+367 pages available in user pool.
+Calibrating timer...  194,355,200 loops/s.
+ide0: unexpected interrupt
+hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
+hda1: 207 sectors (103 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 131 sectors (65 kB), Pintos scratch (22)
+ide1: unexpected interrupt
+filesys: using hda2
+scratch: using hda3
 Formatting file system...done.
 Boot complete.
+Extracting ustar archive from scratch device into file system...
 Putting 'sm-create' into the file system...
+Erasing ustar archive...
 Executing 'sm-create':
 (sm-create) begin
 (sm-create) create "blargle"
@@ -21,12 +32,11 @@ Executing 'sm-create':
 (sm-create) end
 sm-create: exit(0)
 Execution of 'sm-create' complete.
-Timer: 88 ticks
-Thread: 30 idle ticks, 53 kernel ticks, 5 user ticks
-hd0:0: 0 reads, 0 writes
-hd0:1: 98 reads, 224 writes
-hd1:0: 100 reads, 0 writes
-Console: 942 characters output
+Timer: 70 ticks
+Thread: 35 idle ticks, 31 kernel ticks, 4 user ticks
+hda2 (filesys): 108 reads, 282 writes
+hda3 (scratch): 130 reads, 2 writes
+Console: 1086 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...
